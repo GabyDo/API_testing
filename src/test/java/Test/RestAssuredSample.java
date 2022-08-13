@@ -41,7 +41,7 @@ public class RestAssuredSample extends TestBase {
                 .filter(item -> item.getPostId() != 1)
                 .map(item -> item.getPostId())
                 .collect(Collectors.toList());
-        assertThat(comments.size()).as("expecte number of record with").isEqualTo(0);
+        assertThat(comments.size()).as("expected number of record with").isEqualTo(0);
     }
 }
 
