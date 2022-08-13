@@ -1,12 +1,14 @@
 package Test;
 
-import Objects.Post;
+import dataProviders.PostDataProvider;
+import objects.Post;
 import Support.Api;
 import enums.StatusCode;
 import io.restassured.response.Response;
-import Objects.Comment;
+import objects.Comment;
 import org.testng.annotations.Test;
 import static org.assertj.core.api.Assertions.*;
+import org.testng.annotations.DataProvider;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,16 +49,15 @@ public class RestAssuredSample extends TestBase {
         assertThat(comments.size()).as("expected number of record with").isEqualTo(0);
     }
 
-    @Test
-    public void testPostRequestExample() {
+    @Test( dataProvider = "PostsVariations", dataProviderClass = PostDataProvider.class)
+    public void testPostRequestExample( String scenario, Post post) {
     //https://jsonplaceholder.typicode.com/posts
         String basePath = "/posts";
-        Post post = new Post().createNewPost(1,1, "testing titll123", "testing body 123");
+
         Response response = Api.postApiWithObject(post, baseUrl, basePath)
                 .then().assertThat().statusCode(StatusCode.RESOURCE_CREATED.value())
                 .extract().response();
         response.prettyPrint();
     }
-
 }
 
