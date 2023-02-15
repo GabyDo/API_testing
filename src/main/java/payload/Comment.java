@@ -1,4 +1,4 @@
-package objects;
+package payload;
 
 public class Comment {
     Integer postId;

@@ -1,9 +1,12 @@
-package objects;
+package payload;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Post {
+    @JsonProperty("userId") //if userId in json return is not match with userId inside this class.
     Integer userId;
     Integer id;
-    String tittle;
+    String title;
     String body;
 
     public Integer getUserId() {
@@ -22,12 +25,13 @@ public class Post {
         this.id = id;
     }
 
-    public String getTittle() {
-        return tittle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
+    public Post setTitle(String title) {
+        this.title = title;
+        return this;
     }
 
     public String getBody() {
@@ -38,12 +42,14 @@ public class Post {
         this.body = body;
     }
 
-    public Post createNewPost( Integer userId, Integer id, String tittle, String body) {
+    public Post() { } //no Creators, like default constructor for jackson purpost
+
+    public Post (Integer userId, Integer id, String tittle, String body) {
         this.userId = userId;
         this.id = id;
-        this.tittle = tittle;
+        this.title = tittle;
         this.body = body;
-
-        return this;
     }
+
+
 }

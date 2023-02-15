@@ -1,5 +1,5 @@
-package dataProviders;
-import objects.Post;
+package dataprovider;
+import payload.Post;
 import org.testng.annotations.DataProvider;
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class PostDataProvider {
         //---------------
         scenario = "create a post";
         //---------------
-        post = new Post().createNewPost(1,1, "testing tittle 123", "testing body 123");
+        post = new Post(1,1, "testing tittle 123", "testing body 123");
 
         data.add(new Object[]{scenario, post});
 
